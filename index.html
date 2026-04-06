@@ -591,6 +591,145 @@ footer img { height: 34px; width: auto; filter: invert(1); opacity: 0.55; displa
   .about-pillars { grid-template-columns: 1fr; }
   .contact-form-wrap { padding: 32px 24px; }
 }
+
+/* ── MODALS ────────────────────────────────────────────── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 24px;
+  overflow-y: auto;
+}
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+  background: var(--white);
+  width: 100%;
+  max-width: 760px;
+  margin: auto;
+  position: relative;
+  border-top: 4px solid var(--brown);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 36px 48px 28px;
+  border-bottom: 1px solid var(--silver);
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 2;
+}
+
+.modal-title {
+  font-family: var(--cinzel);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--black);
+}
+
+.modal-subtitle {
+  font-family: var(--montserrat);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tan);
+  margin-top: 4px;
+}
+
+.modal-close {
+  width: 36px; height: 36px;
+  border: 1px solid var(--silver);
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+.modal-close:hover { background: var(--cream); border-color: var(--tan); }
+
+.modal-body {
+  padding: 40px 48px 56px;
+  overflow-y: auto;
+}
+
+.modal-section-title {
+  font-family: var(--montserrat);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brown);
+  margin-top: 36px;
+  margin-bottom: 10px;
+}
+.modal-section-title:first-child { margin-top: 0; }
+
+.modal-sub-title {
+  font-family: var(--montserrat);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--black);
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.modal-body p {
+  font-family: var(--raleway);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--grey-dk);
+  margin-bottom: 12px;
+}
+
+.modal-body ul {
+  margin: 0 0 12px 20px;
+  padding: 0;
+}
+.modal-body ul li {
+  font-family: var(--raleway);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--grey-dk);
+  margin-bottom: 6px;
+}
+
+.modal-note {
+  background: var(--cream);
+  border-left: 3px solid var(--tan);
+  padding: 14px 18px;
+  margin-bottom: 28px;
+  font-family: var(--raleway);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--tan);
+  line-height: 1.6;
+}
+
+.modal-divider {
+  border: none;
+  border-top: 1px solid var(--silver);
+  margin: 8px 0 28px;
+}
+
+@media (max-width: 640px) {
+  .modal-header { padding: 24px 24px 20px; }
+  .modal-body { padding: 28px 24px 40px; }
+  .modal-title { font-size: 20px; }
+}
+
 </style>
 </head>
 <body>
@@ -906,6 +1045,8 @@ footer img { height: 34px; width: auto; filter: invert(1); opacity: 0.55; displa
     <a href="#services">Services</a>
     <a href="#clients">Clients</a>
     <a href="#contact">Contact</a>
+    <a href="#" onclick="openModal('terms'); return false;">Terms</a>
+    <a href="#" onclick="openModal('privacy'); return false;">Privacy</a>
   </div>
 </footer>
 
@@ -936,5 +1077,152 @@ footer img { height: 34px; width: auto; filter: invert(1); opacity: 0.55; displa
     });
   }
 </script>
+
+<!-- ── TERMS & CONDITIONS MODAL ───────────────────────── -->
+<div class="modal-overlay" id="modal-terms" onclick="closeOnBackdrop(event, 'terms')">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="terms-title">Terms &amp; Conditions</div>
+        <div class="modal-subtitle">SY Advisors &middot; Effective 2025 &middot; Amman, Jordan</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('terms')" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-title">1. Introduction</div>
+      <p>Welcome to SY Advisors (&lsquo;we&rsquo;, &lsquo;us&rsquo;, &lsquo;our&rsquo;). By accessing our website at www.syadvisors.me or engaging our advisory services, you agree to be bound by these Terms and Conditions. Please read them carefully before proceeding.</p>
+      <p>If you do not agree with any part of these terms, you must not use our website or services.</p>
+
+      <div class="modal-section-title">2. Our Services</div>
+      <p>SY Advisors provides advisory services including, but not limited to:</p>
+      <ul>
+        <li>Financial modeling and valuation</li>
+        <li>Strategy consulting</li>
+        <li>AI integration advisory</li>
+        <li>Startup and fundraising support</li>
+        <li>Investment and venture capital advisory</li>
+      </ul>
+      <p>All services are subject to a separate engagement agreement or Statement of Work (SOW), which will take precedence over these general terms in the event of any conflict.</p>
+
+      <div class="modal-section-title">3. Use of This Website</div>
+      <div class="modal-sub-title">3.1 Permitted Use</div>
+      <p>You may use this website for lawful purposes only. You agree not to use the website in any way that violates any applicable law, is fraudulent or misleading, transmits unsolicited communications, or attempts unauthorised access to our systems.</p>
+      <div class="modal-sub-title">3.2 Intellectual Property</div>
+      <p>All content on this website &mdash; including text, graphics, logos, and design &mdash; is the intellectual property of SY Advisors unless otherwise stated. You may not reproduce, distribute, or use any content without our prior written consent.</p>
+
+      <div class="modal-section-title">4. Confidentiality</div>
+      <p>Any information shared with SY Advisors in the course of an engagement is treated as strictly confidential. We will not disclose your confidential information to any third party without your explicit consent, except where required by law.</p>
+
+      <div class="modal-section-title">5. No Financial or Legal Advice</div>
+      <p>The content on this website is provided for general informational purposes only. Nothing on this site constitutes financial, legal, investment, or professional advice. Formal advisory engagements are governed by a separate signed agreement.</p>
+
+      <div class="modal-section-title">6. Limitation of Liability</div>
+      <p>To the fullest extent permitted by law, SY Advisors shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of this website or our services.</p>
+
+      <div class="modal-section-title">7. Third-Party Links</div>
+      <p>This website may contain links to third-party websites. SY Advisors has no control over those sites and accepts no responsibility for their content or any loss arising from your use of them.</p>
+
+      <div class="modal-section-title">8. Amendments</div>
+      <p>We reserve the right to update these Terms and Conditions at any time. Your continued use of the website constitutes acceptance of the revised terms.</p>
+
+      <div class="modal-section-title">9. Governing Law</div>
+      <p>These Terms and Conditions are governed by the laws of the Hashemite Kingdom of Jordan. Any disputes shall be subject to the exclusive jurisdiction of the courts of Amman, Jordan.</p>
+
+      <div class="modal-section-title">10. Contact</div>
+      <p>Questions about these Terms? Contact us at <a href="mailto:sama@syadvisors.me" style="color:var(--brown);">sama@syadvisors.me</a> or +962 79 600 3777.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── PRIVACY POLICY MODAL ───────────────────────────── -->
+<div class="modal-overlay" id="modal-privacy" onclick="closeOnBackdrop(event, 'privacy')">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="privacy-title">Privacy Policy</div>
+        <div class="modal-subtitle">SY Advisors &middot; Effective 2025 &middot; Amman, Jordan</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('privacy')" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-title">1. Introduction</div>
+      <p>SY Advisors is committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and safeguard information when you visit www.syadvisors.me or engage with our services.</p>
+
+      <div class="modal-section-title">2. Information We Collect</div>
+      <div class="modal-sub-title">2.1 Information You Provide</div>
+      <p>We collect information you voluntarily provide when submitting our contact form, emailing or calling us, or entering into a service engagement. This may include your name, email address, phone number, company name, and the content of your communications.</p>
+      <div class="modal-sub-title">2.2 Information Collected Automatically</div>
+      <p>When you visit our website, we may automatically collect browser type, operating system, referring URLs, pages visited, and anonymised IP address through standard web analytics.</p>
+
+      <div class="modal-section-title">3. How We Use Your Information</div>
+      <ul>
+        <li>To respond to your enquiries and provide services you request</li>
+        <li>To communicate about proposals and engagements</li>
+        <li>To improve and maintain our website</li>
+        <li>To comply with applicable legal obligations</li>
+      </ul>
+      <p>We do not sell, rent, or trade your personal information to any third party for marketing purposes.</p>
+
+      <div class="modal-section-title">4. Legal Basis for Processing</div>
+      <p>We process your personal data on the grounds of consent, contractual necessity, legitimate interests, and legal obligation &mdash; depending on the nature of the interaction.</p>
+
+      <div class="modal-section-title">5. Data Retention</div>
+      <ul>
+        <li>Contact form enquiries: retained for 12 months unless an engagement follows</li>
+        <li>Client engagement data: retained for a minimum of 5 years following the end of the engagement</li>
+      </ul>
+      <p>After the applicable retention period, data is securely deleted or anonymised.</p>
+
+      <div class="modal-section-title">6. Data Sharing</div>
+      <p>We do not share your personal information with third parties except with service providers bound by data processing agreements, where required by law, or in the event of a business transfer.</p>
+
+      <div class="modal-section-title">7. Your Rights</div>
+      <p>You may have the right to access, rectify, erase, restrict, object to, or port your personal data. To exercise any of these rights, contact us at <a href="mailto:sama@syadvisors.me" style="color:var(--brown);">sama@syadvisors.me</a>. We will respond within 30 days.</p>
+
+      <div class="modal-section-title">8. Cookies</div>
+      <p>Our website may use essential and analytics cookies. You can control or disable cookies through your browser settings. Disabling cookies may affect some website functionality.</p>
+
+      <div class="modal-section-title">9. Data Security</div>
+      <p>We implement appropriate technical and organisational measures to protect your personal data. However, no method of internet transmission is 100% secure.</p>
+
+      <div class="modal-section-title">10. Third-Party Links</div>
+      <p>We are not responsible for the privacy practices of third-party sites linked from our website. Please review their policies independently.</p>
+
+      <div class="modal-section-title">11. Changes to This Policy</div>
+      <p>We may update this Privacy Policy periodically. The effective date at the top of this document will reflect the most recent version.</p>
+
+      <div class="modal-section-title">12. Contact Us</div>
+      <p>Questions or requests regarding this Privacy Policy: <a href="mailto:sama@syadvisors.me" style="color:var(--brown);">sama@syadvisors.me</a> &middot; +962 79 600 3777 &middot; Amman, Jordan.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(id) {
+    document.getElementById('modal-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById('modal-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeOnBackdrop(e, id) {
+    if (e.target === document.getElementById('modal-' + id)) closeModal(id);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      ['terms', 'privacy'].forEach(id => closeModal(id));
+    }
+  });
+</script>
+
 </body>
 </html>
